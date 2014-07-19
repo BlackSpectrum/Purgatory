@@ -1,0 +1,14 @@
+name: BSP${project.name}
+main: ${project.groupId}.purgatory.Purgatory
+version: ${project.version}
+author: Mats391
+depend: [BSPSpawnBed]
+commands:
+  pur:
+    desciption: Executes specified Purgatory command
+    usage: /pur <cmd> <args>
+    permission: purgatory.admin
+    permission-message: You do not have permission to use this.
+permissions:
+  purgatory.admin:
+    default: op
