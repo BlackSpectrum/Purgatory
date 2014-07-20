@@ -29,7 +29,7 @@ public class CommandHandler implements CommandExecutor
 		this.commands = new HashMap<String, AbstractCommand>();
 		this.plugin = instance;
 		this.plugin.getCommand( "pur" ).setExecutor( this );
-		this.registerCommands( new AbstractCommand[] { new SetCommand( this.plugin ), new FreeCommand( plugin ) } );
+		this.registerCommands( new AbstractCommand[] { new SetCommand( this.plugin ), new FreeCommand( this.plugin ) } );
 	}
 
 

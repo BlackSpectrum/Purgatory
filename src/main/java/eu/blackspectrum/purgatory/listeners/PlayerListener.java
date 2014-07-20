@@ -1,8 +1,6 @@
 package eu.blackspectrum.purgatory.listeners;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.World;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -15,6 +13,16 @@ import eu.blackspectrum.purgatory.Purgatory;
 
 public class PlayerListener implements Listener
 {
+
+
+	@EventHandler(priority = EventPriority.NORMAL)
+	public void onPlayerDie( final PlayerDeathEvent event ) {
+		final Player player = event.getEntity();
+
+		Purgatory.addPlayer( player );
+	}
+
+
 
 
 	@EventHandler(priority = EventPriority.HIGHEST)
@@ -36,27 +44,11 @@ public class PlayerListener implements Listener
 		// If he cant leave purgatory, spawn him inside
 		if ( !Purgatory.checkPlayer( player ) )
 		{
-
-			final World world = Bukkit.getServer().getWorld( Purgatory.config.getString( "purgatory.world" ) );
-			final Location spawnLocation = new Location( world, Purgatory.config.getInt( "purgatory.x" ),
-					Purgatory.config.getInt( "purgatory.y" ), Purgatory.config.getInt( "purgatory.z" ) );
-
-			event.setRespawnLocation( spawnLocation );
+			event.setRespawnLocation( Purgatory.purgatoryLocation );
+			player.sendMessage( "Your are stuck in the .." + ChatColor.RED + "FOREVER" );
 		}
 		else
-		{
 			event.setRespawnLocation( Purgatory.getTpLocation( player ) );
-		}
 
-	}
-
-
-
-
-	@EventHandler(priority = EventPriority.NORMAL)
-	public void onPlayerDie( final PlayerDeathEvent event ) {
-		final Player player = event.getEntity();
-
-		Purgatory.addPlayer( player );
 	}
 }

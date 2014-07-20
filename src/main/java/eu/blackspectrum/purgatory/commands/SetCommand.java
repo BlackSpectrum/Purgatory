@@ -21,7 +21,7 @@ public class SetCommand extends AbstractCommand
 
 	@Override
 	public String getUsage() {
-		return "Usage: /pur set <args>, <args> can be \"purgatory\", \"spawn\", \"check\" + <value> or \"time\" + value";
+		return "Usage: /pur set <args>, <args> can be \"purgatory\", \"spawn\", \"check\" + [value] or \"time\" + [value]";
 	}
 
 
@@ -42,23 +42,26 @@ public class SetCommand extends AbstractCommand
 
 			if ( arg.equalsIgnoreCase( "purgatory" ) )
 			{
-				Purgatory.config.set( "purgatory.world", location.getWorld().getName() );
-				Purgatory.config.set( "purgatory.x", location.getBlockX() );
-				Purgatory.config.set( "purgatory.y", location.getBlockY() );
-				Purgatory.config.set( "purgatory.z", location.getBlockZ() );
-				this.plugin.saveConfig();
+				this.plugin.setSpawnLocation( location );
 				sender.sendMessage( "New Purgatory position set." );
 				return true;
 			}
 
 			if ( arg.equalsIgnoreCase( "spawn" ) )
 			{
-				Purgatory.config.set( "spawn.world", location.getWorld().getName() );
-				Purgatory.config.set( "spawn.x", location.getBlockX() );
-				Purgatory.config.set( "spawn.y", location.getBlockY() );
-				Purgatory.config.set( "spawn.z", location.getBlockZ() );
-				this.plugin.saveConfig();
+				this.plugin.setSpawnLocation( location );
 				sender.sendMessage( "New Spawn position set." );
+				return true;
+			}
+
+			if ( arg.equalsIgnoreCase( "check" ) )
+			{
+				sender.sendMessage( "Check interval: " + Purgatory.config.getLong( "checkPeriodInTicks" ) );
+				return true;
+			}
+			if ( arg.equalsIgnoreCase( "time" ) )
+			{
+				sender.sendMessage( "Time in purgatory: " + Purgatory.config.getLong( "timeInPurgatory" ) );
 				return true;
 			}
 		}

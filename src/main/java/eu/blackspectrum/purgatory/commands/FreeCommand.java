@@ -13,7 +13,7 @@ public class FreeCommand extends AbstractCommand
 {
 
 
-	public FreeCommand(Purgatory instance) {
+	public FreeCommand(final Purgatory instance) {
 		super( instance, "free" );
 	}
 
@@ -29,7 +29,7 @@ public class FreeCommand extends AbstractCommand
 
 
 	@Override
-	public boolean onCommand( CommandSender sender, List<String> args ) {
+	public boolean onCommand( final CommandSender sender, final List<String> args ) {
 
 		Player target = null;
 		if ( args.size() == 0 && sender instanceof Player )
@@ -37,8 +37,7 @@ public class FreeCommand extends AbstractCommand
 		else if ( args.size() == 1 )
 		{
 			boolean foundOne = false;
-			for ( Player p : Bukkit.getOnlinePlayers() )
-			{
+			for ( final Player p : Bukkit.getOnlinePlayers() )
 				if ( p.getName().matches( "(?i:.*" + args.get( 0 ) + ".*)" ) )
 
 				{
@@ -50,7 +49,6 @@ public class FreeCommand extends AbstractCommand
 					target = p;
 					foundOne = true;
 				}
-			}
 		}
 
 		if ( target != null )

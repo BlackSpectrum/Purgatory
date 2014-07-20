@@ -25,7 +25,30 @@ public abstract class AbstractCommand
 
 
 
-	public abstract boolean onCommand( final CommandSender sender, final List<String> args );
+	public List<String> getAliases() {
+		try
+		{
+			return this.plugin.getCommand( this.name ).getAliases();
+		}
+		catch ( final NullPointerException e )
+		{
+			return null;
+		}
+	}
+
+
+
+
+	public String getDescription() {
+		try
+		{
+			return this.plugin.getCommand( this.name ).getDescription();
+		}
+		catch ( final NullPointerException e )
+		{
+			return null;
+		}
+	}
 
 
 
@@ -37,12 +60,12 @@ public abstract class AbstractCommand
 
 
 
-	public String getDescription() {
+	public String getPermission() {
 		try
 		{
-			return this.plugin.getCommand( this.name ).getDescription();
+			return this.plugin.getCommand( this.name ).getPermission();
 		}
-		catch ( NullPointerException e )
+		catch ( final NullPointerException e )
 		{
 			return null;
 		}
@@ -56,7 +79,7 @@ public abstract class AbstractCommand
 		{
 			return this.plugin.getCommand( this.name ).getUsage();
 		}
-		catch ( NullPointerException e )
+		catch ( final NullPointerException e )
 		{
 			return null;
 		}
@@ -65,28 +88,5 @@ public abstract class AbstractCommand
 
 
 
-	public String getPermission() {
-		try
-		{
-			return this.plugin.getCommand( this.name ).getPermission();
-		}
-		catch ( NullPointerException e )
-		{
-			return null;
-		}
-	}
-
-
-
-
-	public List<String> getAliases() {
-		try
-		{
-			return (List<String>) this.plugin.getCommand( this.name ).getAliases();
-		}
-		catch ( NullPointerException e )
-		{
-			return null;
-		}
-	}
+	public abstract boolean onCommand( final CommandSender sender, final List<String> args );
 }
