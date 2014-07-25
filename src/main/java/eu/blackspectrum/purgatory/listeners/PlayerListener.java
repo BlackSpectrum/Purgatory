@@ -45,7 +45,7 @@ public class PlayerListener implements Listener
 		if ( !Purgatory.checkPlayer( player ) )
 		{
 			event.setRespawnLocation( Purgatory.purgatoryLocation );
-			player.sendMessage( "Your are stuck in the .." + ChatColor.RED + "FOREVER" );
+			player.sendMessage( "Your are stuck in the Purgatory ..." + ChatColor.RED + "FOREVER" );
 		}
 		else
 			event.setRespawnLocation( Purgatory.getTpLocation( player ) );
