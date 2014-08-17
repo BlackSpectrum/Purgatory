@@ -42,7 +42,6 @@ public class Purgatory extends JavaPlugin
 
 	/**
 	 *
-	 * @param now
 	 * @param player
 	 * @return true if the player can leave the purgatory
 	 */
